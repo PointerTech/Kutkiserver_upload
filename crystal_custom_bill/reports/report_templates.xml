@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Define Paper Format FIRST -->
+    <record id="paperformat_nepal_invoice" model="report.paperformat">
+        <field name="name">Nepal Invoice Format</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Then Define the Report -->
+    <record id="custom_nepal_invoice_report" model="ir.actions.report">
+        <field name="name">Nepal Tax Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">crystal_custom_bill.report_invoice_nepal</field>
+        <field name="report_file">crystal_custom_bill.report_invoice_nepal</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="crystal_custom_bill.paperformat_nepal_invoice"/>
+    </record>
+</odoo>
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="custom_invoice_report" model="ir.actions.report">
+        <field name="name">Custom Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">your_module.report_invoice_custom</field>
+        <field name="report_file">your_module.report_invoice_custom</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo> -->

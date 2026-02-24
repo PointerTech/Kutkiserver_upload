@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_nepal" name="Nepal Invoice DOcument">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="font-family: Arial, sans-serif; font-size: 11pt; padding: 10px;">
+                    
+                    <!-- Header Section -->
+                    <div style="border: 2px solid black; padding: 10px; margin-bottom: 5px;">
+                        <table style="width: 100%; border: none;">
+                            <tr>
+                                <td style="width: 15%; vertical-align: top;">
+                                    <div style="width: 60px; height: 60px; border: 1px solid black; border-radius: 50%; text-align: center; line-height: 60px;">
+                                        LOGO
+                                    </div>
+                                </td>
+                                <td style="width: 50%; vertical-align: top;">
+                                    <h2 style="margin: 0; font-size: 18pt;">
+                                        <span t-field="o.company_id.name"/>
+                                    </h2>
+                                    <h3 style="margin: 2px 0; font-size: 9pt;">
+                                        <span t-field="o.company_id.street"/>, 
+                                        <span t-field="o.company_id.city"/>
+                                    </h3>
+                                </td>
+                                <td style="width: 35%; text-align: right; vertical-align: top;">
+                                    <p style="margin: 2px 0;">
+                                        <span t-field="o.company_id.street2"/><br/>
+                                        <span t-field="o.company_id.city"/>
+                                    </p>
+                                    <p style="margin: 5px 0; font-size: 14pt; color: red;">
+                                        <strong>Invoice No.: <span t-field="o.name"/></strong>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- ***********************************Start*************************************** -->
+                        <div style="margin-top: 10px;">
+                            <table style="width: 100%; border-collapse: collapse; border: none;">
+                                
+                                <!-- Row 1 -->
+                                <tr>
+                                    <!-- 1*1 VAT No -->
+                                    <td style="width: 35%; vertical-align: top;">
+                                        <strong>VAT No.</strong>
+                                        <t t-foreach="o.company_id.vat or '000000000'" t-as="digit">
+                                            <!-- <span style="border: 1px solid black; padding: 2px 5px; margin: 0 1px;"> -->
+                                            <span style="display:inline-block; border:1px solid black; padding:2px 5px; text-align:center; margin:0; font-size:11pt; line-height:1;">
+                                                <t t-esc="digit"/>
+                                            </span>
+                                        </t>
+                                        
+                                    </td>
+
+                                    <!-- 1*2 TAX INVOICE -->
+                                    <td style="width: 30%; text-align: center; vertical-align: top;">
+                                        <h3 style="margin: 0; text-decoration: underline; text-align: center;">TAX INVOICE</h3>
+                                    </td>
+
+                                    <!-- 1*3 Bill Issue Date -->
+                                    <td style="width: 35%; vertical-align: top;">
+                                        <p style="margin: 2px 0;">
+                                            <strong>Bill Issue Date:</strong>
+                                            <span t-field="o.invoice_date"/>
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 2 -->
+                                <tr>
+                                    <!-- 2*1 Empty -->
+                                    <td></td>
+
+                                    <!-- 2*2 Empty -->
+                                    <td></td>
+
+                                    <!-- 2*3 Transaction Date -->
+                                    <td>
+                                        <p style="margin: 2px 0;">
+                                            <strong>Transaction Date:</strong>
+                                            <span t-field="o.invoice_date"/>
+                                        </p>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <!-- **************************************END************************************************************* -->
+
+
+                        
+                        <!-- <div style="margin-top: 10px;"> 
+                            <table style="width: 100%; border: none;">
+                                <tr>
+                                    <td style="width: 35%;">
+                                        <strong>VAT No.</strong> 
+                                        <t t-foreach="o.company_id.vat or '000000000'" t-as="digit">
+                                            <span style="border: 1px solid black; padding: 2px 5px; margin: 0 1px;">
+                                                <t t-esc="digit"/>
+                                            </span>
+                                        </t>
+                                    </td>
+                                    <td style="width: 30%;">
+                                        <h3 style="margin: 0; text-decoration: underline; text-align: center;">TAX INVOICE</h3>
+                                    </td>
+                                    <td style="width: 35%;">
+                                        <p style="margin: 2px 0;">
+                                            <strong>Bill Issue Date:</strong> 
+                                            <span t-field="o.invoice_date"/>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div> -->
+
+                        <!-- ______________________________________________________________________________________________________ -->
+
+                        <div style="margin-top: 10px;">
+                            <table style="width: 100%; border: none; font-size: 11pt; border-collapse: collapse;">
+                                
+                                <tr>
+                                    <td colspan="2" style="padding: 3px 0;">
+                                        <strong>Customers Name:</strong> 
+                                        <span t-field="o.partner_id.name"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <!-- LEFT SIDE -->
+                                    <td style="width: 50%; padding: 3px 10px 3px 0; vertical-align: top;">
+                                        <strong>Address:</strong> 
+                                        <span t-field="o.partner_id.street"/>
+                                    </td>
+
+                                    <!-- RIGHT SIDE -->
+                                    <td style="width: 50%; padding: 3px 0; vertical-align: top;">
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="width: 40%;"><strong>Contact No:</strong></td>
+                                                <td style="width: 60%;">
+                                                    <span t-field="o.partner_id.phone"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <!-- LEFT SIDE -->
+                                    <td style="width: 50%; padding: 3px 10px 3px 0; vertical-align: top;">
+                                        <strong>Buyer's VAT NO.:</strong>
+                                        <t t-if="o.partner_id.vat">
+                                            <t t-foreach="o.partner_id.vat or ''" t-as="digit">
+                                                <span style="border: 1px solid black; padding: 2px 4px; margin: 0 1px;">
+                                                    <t t-esc="digit"/>
+                                                </span>
+                                            </t>
+                                        </t>
+                                    </td>
+
+                                    <!-- RIGHT SIDE -->
+                                    <td style="width: 50%; padding: 3px 0; vertical-align: top;">
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="width: 40%;"><strong>Payment:</strong>Cash / Credit / Cheque / Others</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <!-- _____________________________________________________________________________________________________________ -->
+
+
+
+                        <div style="margin-top: 10px;">
+                            <table style="width: 100%; border: none; font-size: 11pt;">
+                                <!-- <tr>
+                                    <td style="width: 70%;">
+                                        <p style="margin: 2px 0;">
+                                            <strong>Bill Issue Date:</strong> 
+                                            <span t-field="o.invoice_date"/>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p style="margin: 2px 0;">
+                                            <strong>Transaction Date:</strong> 
+                                            <span t-field="o.invoice_date"/>
+                                        </p>
+                                    </td>
+                                </tr> -->
+                                <tr>
+                                    <td colspan="2">
+                                        <p style="margin: 2px 0;">
+                                            <strong>Customers Name:</strong> 
+                                            <span t-field="o.partner_id.name"/>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p style="margin: 2px 0;">
+                                            <strong>Address:</strong> 
+                                            <span t-field="o.partner_id.street"/>
+                                        </p>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <strong>Contact No:</strong> 
+                                        <span t-field="o.partner_id.phone"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Buyer's VAT NO.:</strong>
+                                        <t t-if="o.partner_id.vat">
+                                            <t t-foreach="o.partner_id.vat or ''" t-as="digit">
+                                                <span style="border: 1px solid black; padding: 2px 4px; margin: 0 1px;">
+                                                    <t t-esc="digit"/>
+                                                </span>
+                                            </t>
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <strong>Payment:</strong> Cash/Credit/Cheque/Others         
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Invoice Lines Table -->
+                    <table style="width: 100%; border-collapse: collapse; border: 2px solid black; margin-top: 5px;">
+                        <thead>
+                            <tr style="border: 1px solid black; background-color: #f0f0f0;">
+                                <th style="border: 1px solid black; padding: 5px; width: 5%;">S.L.<br/>No.</th>
+                                <th style="border: 1px solid black; padding: 5px; width: 10%;">H.S.<br/>Code</th>
+                                <th style="border: 1px solid black; padding: 5px; width: 45%;">Particulars</th>
+                                <th style="border: 1px solid black; padding: 5px; width: 10%;">Qty.</th>
+                                <th style="border: 1px solid black; padding: 5px; width: 12%;">Rate</th>
+                                <th style="border: 1px solid black; padding: 5px; width: 18%;">Amount<br/>Rs. Ps.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="line_num" t-value="1"/>
+                            <t t-foreach="o.invoice_line_ids" t-as="line">
+                                <tr style="border: 1px solid black;">
+                                    <td style="border: 1px solid black; padding: 5px; text-align: center;">
+                                        <t t-esc="line_num"/>
+                                        <t t-set="line_num" t-value="line_num + 1"/>
+                                    </td>
+                                    <td style="border: 1px solid black; padding: 5px; text-align: center;">
+                                        <span t-field="line.product_id.default_code"/>
+                                    </td>
+                                    <td style="border: 1px solid black; padding: 5px;">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td style="border: 1px solid black; padding: 5px; text-align: center;">
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td style="border: 1px solid black; padding: 5px; text-align: right;">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td style="border: 1px solid black; padding: 5px; text-align: right;">
+                                        <span t-field="line.price_subtotal"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            
+                            <!-- Empty rows for spacing -->
+                            <t t-set="empty_rows" t-value="10 - len(o.invoice_line_ids)"/>
+                            <t t-if="empty_rows &gt; 0">
+                                <t t-foreach="range(int(empty_rows))" t-as="i">
+                                    <tr style="border: 1px solid black; height: 30px;">
+                                        <td style="border: 1px solid black;">&#160;</td>
+                                        <td style="border: 1px solid black;">&#160;</td>
+                                        <td style="border: 1px solid black;">&#160;</td>
+                                        <td style="border: 1px solid black;">&#160;</td>
+                                        <td style="border: 1px solid black;">&#160;</td>
+                                        <td style="border: 1px solid black;">&#160;</td>
+                                    </tr>
+                                </t>
+                            </t>
+
+                            <!-- Total Row -->
+                            <tr style="border: 1px solid black;">
+                                <td colspan="5" style="border: 1px solid black; padding: 5px; text-align: right;">
+                                    <strong>Total</strong>
+                                </td>
+                                <td style="border: 1px solid black; padding: 5px; text-align: right;">
+                                    <strong><span t-field="o.amount_untaxed"/></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Footer Section -->
+                    <table style="width: 100%; border: 2px solid black; border-top: none; border-collapse: collapse;">
+                        <tr>
+                            <td style="width: 60%; border-right: 1px solid black; padding: 5px; vertical-align: top;">
+                                <p style="margin: 2px 0;">
+                                    <strong>Excise Duty %</strong> ............... / Rate Rs. .................. Qty...........
+                                </p>
+                                <p style="margin: 15px 0 2px 0;">
+                                    <strong>In words</strong> .....................................................................
+                                </p>
+                                <p style="margin: 2px 0;">
+                                    .............................................................................................
+                                </p>
+                            </td>
+                            <td style="width: 40%; padding: 0; vertical-align: top;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid black; padding: 5px; width: 60%;">
+                                            <strong>Total Amount</strong>
+                                        </td>
+                                        <td style="border-bottom: 1px solid black; border-left: 1px solid black; padding: 5px; text-align: right;">
+                                            <span t-field="o.amount_untaxed"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid black; padding: 5px;">
+                                            <strong>.....% Discount</strong>
+                                        </td>
+                                        <td style="border-bottom: 1px solid black; border-left: 1px solid black; padding: 5px; text-align: right;">
+                                            0.00
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid black; padding: 5px;">
+                                            <strong>Taxable Amount</strong>
+                                        </td>
+                                        <td style="border-bottom: 1px solid black; border-left: 1px solid black; padding: 5px; text-align: right;">
+                                            <span t-field="o.amount_untaxed"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid black; padding: 5px;">
+                                            <strong>13% VAT</strong>
+                                        </td>
+                                        <td style="border-bottom: 1px solid black; border-left: 1px solid black; padding: 5px; text-align: right;">
+                                            <span t-field="o.amount_tax"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <strong>Grand Total</strong>
+                                        </td>
+                                        <td style="border-left: 1px solid black; padding: 5px; text-align: right;">
+                                            <strong><span t-field="o.amount_total"/></strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
